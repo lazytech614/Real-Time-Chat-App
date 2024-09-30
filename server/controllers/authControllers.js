@@ -37,9 +37,10 @@ export const signupUser = async (req, res) => {
         fullName: newUser.fullName,
         userName: newUser.userName,
         profilePic: newUser.profilePic,
+        success: 1,
       });
     } else {
-      res.status(400).json({ error: "Invalid data" });
+      res.status(400).json({ error: "Invalid data", success: 0 });
     }
   } catch (err) {
     console.log(err);
@@ -53,11 +54,13 @@ export const loginUser = async (req, res) => {
 
     const user = await User.findOne({ userName });
     if (!user) {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(400).json({ message: "User not found", success: 0 });
     }
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
-      return res.status(401).json({ message: "Incorrect password" });
+      return res
+        .status(401)
+        .json({ message: "Incorrect password", success: 0 });
     }
 
     generateTokenAndSetCookie(user._id, res);
@@ -67,10 +70,11 @@ export const loginUser = async (req, res) => {
       fullName: user.fullName,
       userName: user.userName,
       profilePic: user.profilePic,
+      success: 1,
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error", success: 0 });
   }
 };
 

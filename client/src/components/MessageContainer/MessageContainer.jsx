@@ -3,11 +3,14 @@ import Header from './Header'
 import InputBox from './InputBox'
 import Messages from './Messages'
 import { TiMessages } from "react-icons/ti";
+import { useConversationContext } from '../../context/ConversationContext';
 
 const MessageContainer = () => {
-  const [isChatSelected, setIsChatSelected] = useState(false)
+  const { selectedConversation, setSelectedConversation } = useConversationContext();
+  // console.log(selectedConversation);
+  // const [isChatSelected, setIsChatSelected] = useState(false)
   return (
-    <>{isChatSelected? (
+    <>{selectedConversation? (
       <div className='md:min-w-[450px] flex flex-col justify-between'>
         <Header />
         <Messages />
