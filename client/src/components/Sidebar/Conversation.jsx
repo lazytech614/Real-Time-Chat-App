@@ -1,10 +1,17 @@
 import React from 'react';
 import getRandomEmoji from '../../utils/emoji';
 import { useConversationContext } from '../../context/ConversationContext';
+import { useSocketContext } from '../../context/SocketContext';
 
 const Conversation = ({ fullName, profilePic, _id }) => {
+  // console.log(_id);
   const { selectedConversation, setSelectedConversation } = useConversationContext(); // Corrected invocation
   const isSelected = selectedConversation?._id === _id;
+
+  const {onlineUsers} = useSocketContext()
+  // console.log(onlineUsers);
+  const isOnline = onlineUsers.includes(_id)
+  // console.log(isOnline);
 
   return (
     <div
@@ -15,7 +22,8 @@ const Conversation = ({ fullName, profilePic, _id }) => {
         <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
           <img src={profilePic} alt="Profile" />
         </div>
-        <div className="h-[10px] w-[10px] bg-green-600 rounded-full absolute right-0 -top-1"></div>
+        <div className={`h-[10px] w-[10px] rounded-full absolute right-0 -top-1 ${isOnline ? "bg-green-600" : "bg-transparent"}`}></div>
+
       </div>
       <div className="flex flex-col flex-1">
         <div className="flex gap-3 justify-between">

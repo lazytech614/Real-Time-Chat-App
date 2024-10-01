@@ -2,10 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import MessageCard from './MessageCard';
 import useGetMessage from '../../hooks/useGetMessage';
 import { useConversationContext } from '../../context/ConversationContext';
+import useListenMessages from '../../hooks/useListenMessages';
 
 const Messages = () => {
   const { loading, messages, setMessages } = useGetMessage();
   const { selectedConversation } = useConversationContext();
+
+  useListenMessages()
 
   const lastMessageRef = useRef();
 

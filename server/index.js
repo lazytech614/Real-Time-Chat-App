@@ -6,9 +6,10 @@ import authRoutes from "./routes/authRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
-const app = express();
+// const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
@@ -21,7 +22,7 @@ app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => res.send("Hello there!"));
 
-const server = app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDb();
   console.log(`Server running on http://localhost:${PORT}`);
 });
