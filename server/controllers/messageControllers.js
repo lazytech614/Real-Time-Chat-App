@@ -55,7 +55,7 @@ export const sendMessage = async (req, res) => {
 export const getMessage = async (req, res) => {
   try {
     const { id: userToChatId } = req.params;
-    const senderId = req.user._id; // Fix typo from `rea` to `req`
+    const senderId = req.user._id;
 
     // Find conversation between sender and receiver
     const conversation = await Conversation.findOne({

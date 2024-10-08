@@ -8,8 +8,7 @@ const MessageCard = ({ message }) => {
   const { selectedConversation } = useConversationContext();
 
   return (
-    <div className='w-full'>
-      <div className={`chat chat-${authUser._id === message.senderId ? "end" : "start"}`}>
+    <div className={`chat chat-${authUser._id === message.senderId ? "end" : "start"}`}>
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
             <img
@@ -21,10 +20,7 @@ const MessageCard = ({ message }) => {
         <div className="chat-footer">
           <time className="text-xs opacity-100">{extractTime(message.createdAt)}</time>
         </div>
-        {/* <div className="chat-footer opacity-50">{authUser._id === message.senderId ? `Seen ` : 'Delivered'}</div>
-        <time className="text-xs opacity-50 text-white">12:45</time> */}
       </div>
-    </div>
   );
 };
 
