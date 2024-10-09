@@ -21,6 +21,7 @@ const useSignup = () => {
       const data = await fetch(
         `${import.meta.env.VITE_SERVER_URL}/api/auth/signup`,
         {
+          credentials: "include",
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),

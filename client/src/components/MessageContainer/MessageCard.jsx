@@ -21,6 +21,7 @@ const MessageCard = ({ message }) => {
           <time className="text-xs opacity-100">{extractTime(message.createdAt)}</time>
         </div>
       </div>
+
   );
 };
 

@@ -30,8 +30,8 @@ export const signupUser = async (req, res) => {
     });
 
     if (newUser) {
-      generateTokenAndSetCookie(newUser._id, res);
       await newUser.save();
+      generateTokenAndSetCookie(newUser._id, res);
       res.status(201).json({
         _id: newUser._id,
         fullName: newUser.fullName,

@@ -20,6 +20,7 @@ const useLogin = () => {
       const response = await fetch(
         `${import.meta.env.VITE_SERVER_URL}/api/auth/login`,
         {
+          credentials: "include",
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),

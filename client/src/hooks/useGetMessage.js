@@ -14,7 +14,10 @@ const useGetMessage = () => {
         const response = await fetch(
           `${import.meta.env.VITE_SERVER_URL}/api/messages/${
             selectedConversation._id
-          }`
+          }`,
+          {
+            credentials: "include",
+          }
         );
         const data = await response.json();
 

@@ -22,6 +22,7 @@ const useSendMessage = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ message }),
+          credentials: "include",
         }
       ).then((res) => res.json());
 

@@ -8,14 +8,23 @@ const useGetConversation = () => {
     setLoading(true);
 
     try {
-      const data = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/users`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-      }).then((res) => res.json());
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/users`,
+        {
+          credentials: "include",
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch users: " + response.statusText);
+      }
+
+      const data = await response.json();
       return data;
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
