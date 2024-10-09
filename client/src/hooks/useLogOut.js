@@ -10,10 +10,13 @@ const useLogOut = () => {
   const logout = async () => {
     setLoading(true);
     try {
-      const data = await fetch("/api/auth/logout", {
-        method: "POST",
-        headers: { "Content-Type": "appication/json" },
-      }).then((res) => res.json());
+      const data = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/auth/logout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "appication/json" },
+        }
+      ).then((res) => res.json());
 
       if (data.error) throw new Error(data.error);
 

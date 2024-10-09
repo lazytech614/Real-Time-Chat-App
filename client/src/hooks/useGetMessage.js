@@ -12,7 +12,9 @@ const useGetMessage = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `/api/messages/${selectedConversation._id}`
+          `${import.meta.env.VITE_SERVER_URL}/api/messages/${
+            selectedConversation._id
+          }`
         );
         const data = await response.json();
 

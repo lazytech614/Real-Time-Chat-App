@@ -51,8 +51,12 @@ export const signupUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { userName, password } = req.body;
+    // console.log(req.body);
 
-    const user = await User.findOne({ userName });
+    const user = await User.findOne({
+      userName: { $regex: new RegExp(`^${userName}$`, "i") },
+    });
+
     if (!user) {
       return res.status(400).json({ message: "User not found", success: 0 });
     }

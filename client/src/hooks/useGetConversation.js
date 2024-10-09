@@ -8,14 +8,11 @@ const useGetConversation = () => {
     setLoading(true);
 
     try {
-      const data = await fetch("/api/users", {
+      const data = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/users`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       }).then((res) => res.json());
-
-      console.log(data);
-
       return data;
     } catch (error) {
       toast.error(error);
