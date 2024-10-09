@@ -14,6 +14,8 @@ const useGetConversation = () => {
         credentials: "include",
       }).then((res) => res.json());
 
+      console.log(data);
+
       return data;
     } catch (error) {
       toast.error(error);
